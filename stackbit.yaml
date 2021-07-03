@@ -1,0 +1,145 @@
+ssgName: custom
+stackbitVersion: "^0.2.41"
+buildCommand: "bundle install && jekyll build"
+staticDir: ""
+publishDir: "_site"
+dataDir: ""
+uploadDir: assets
+pagesDir: ""
+pageTemplateKey: layout
+models:
+  config:
+    type: data
+    label: Config
+    file: _config.yml
+    fields:
+      - type: string
+        name: lang
+        label: Site Language
+        description: The language of your site used in HTML lang attribute
+      - type: string
+        name: title
+        label: Site Title
+        description: The site title
+      - type: string
+        name: description
+        label: Description
+        description: The site description
+      - type: string
+        name: baseurl
+        label: Baseurl
+        description: The subpath of your site, e.g. /blog, for generating urls
+      - type: string
+        name: url
+        label: Url
+        description: The base URL of the site
+      - type: string
+        name: permalink
+        label: Permalink
+        description: The permalink pattern
+      - type: image
+        name: logo
+        label: Logo
+        description: The logo image of your site
+      - type: list
+        name: plugins
+        label: Plugins
+        items:
+          type: string
+      - type: list
+        name: exclude
+        label: Exclude
+        description: Exclude files from being published
+        items:
+          type: string
+      - type: number
+        name: paginate
+        label: Paginate
+        description: Number of posts per page
+      - type: string
+        name: paginate_path
+        label: Pagination Path
+        description: The permalink pattern of paginated pages
+      - type: string
+        name: markdown
+        label: Markdown
+        hidden: true
+      - type: string
+        name: theme
+        label: Theme
+      - type: object
+        name: collections
+        label: collections
+        fields:
+          - type: object
+            name: posts
+            label: posts
+            fields:
+              - type: string
+                name: title
+                label: Collection Title
+              - type: boolean
+                name: output
+                label: Output
+              - type: string
+                name: description
+                label: Collection Description
+  post:
+    type: page
+    label: Post
+    template: post
+    folder: _posts
+    fields:
+      - name: title
+        type: string
+        label: Title
+        description: The title of the post
+        required: true
+      - name: description
+        type: string
+        label: Description
+        description: The description of the post
+      - name: date
+        type: date
+        label: Date
+        description: The date of the post
+      - name: categories
+        type: list
+        label: Categories
+        items:
+          type: string
+  page:
+    type: page
+    label: Page
+    template: page
+    exclude:
+      - "_posts/**"
+      - "README.md"
+    fields:
+      - type: string
+        name: title
+        label: Title
+        description: The title of the page
+        required: true
+      - type: string
+        name: description
+        label: Description
+        description: The description of the page
+      - type: string
+        name: permalink
+        label: Permalink
+        description: The permalink of the page
+        required: false
+        hidden: true
+      - type: boolean
+        name: sitemap
+        label: Sitemap
+        description: Include in sitemap?
+        required: false
+        hidden: true
+      - type: boolean
+        name: indexing
+        label: Indexing
+        description: Index the page with search engines?
+        required: false
+        hidden: true
